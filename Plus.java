@@ -51,15 +51,15 @@ public class Plus {
 		x=newN1.length;
 		int y=newN2.length;
 		int b=0;
-		newN3=new char[x];
+		newN3=new char[x+1];
 		for(int i=x-1;i>=0;i--) {
 			for(int a=y-1;a>=0;a--) {
-				if(Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).length()==2) {
-					newN3[i]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(1);
+				if(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b>=10) {
+					newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(1);
 					b=1;
 				}
-				if(Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).length()==1) {
-					newN3[i]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(0);
+				if(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b<10) {
+					newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(0);
 					b=0;
 				}
 				i--;
@@ -67,15 +67,18 @@ public class Plus {
 			if(i<0) {
 				break;
 			}
-			if(Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).length()==2) {
-				newN3[i]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).charAt(1);
+			if(Integer.parseInt(String.valueOf(newN1[i]))+b>=10) {
+				newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).charAt(1);
 				b=1;
 			}
-			if(Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).length()==1) {
-				newN3[i]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).charAt(0);
+			if(Integer.parseInt(String.valueOf(newN1[i]))+b<10) {
+				newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+b).charAt(0);
 				b=0;
 			}
 		}
-		System.out.println(String.valueOf(newN1)+" + "+String.valueOf(newN2)+" = "+String.valueOf(newN3));
+		if(b!=0) {
+			newN3[0]=Long.toString(b).charAt(0);
+		}
+		System.out.println(String.valueOf(newN3));
 	}
 }
