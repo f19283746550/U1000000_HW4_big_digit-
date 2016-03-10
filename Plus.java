@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Scanner;
+import java.lang.ArrayIndexOutOfBoundsException;
 public class Plus {
 	private static char newN1[];
 	private static char newN2[];
@@ -53,16 +54,19 @@ public class Plus {
 		int b=0;
 		newN3=new char[x+1];
 		for(int i=x-1;i>=0;i--) {
-			for(int a=y-1;a>=0;a--) {
-				if(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b>=10) {
-					newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(1);
-					b=1;
+			if(i==x-1) {
+				for(int a=y-1;a>=0;a--) {
+					if((Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b)>=10) {
+						newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(1);
+						b=1;
+					}
+					if(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b<10) {
+						newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(0);
+						b=0;
+					}
+					System.out.println(a);
+					i--;
 				}
-				if(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b<10) {
-					newN3[i+1]=Integer.toString(Integer.parseInt(String.valueOf(newN1[i]))+Integer.parseInt(String.valueOf(newN2[a]))+b).charAt(0);
-					b=0;
-				}
-				i--;
 			}
 			if(i<0) {
 				break;
